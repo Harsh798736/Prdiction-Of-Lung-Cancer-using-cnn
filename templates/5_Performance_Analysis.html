@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='1_Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='5_Performance_Analysis.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">LungCancer</a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('preview') }}">Preview</a>
+                <a style="color: #007bff;" href="{{ url_for('performance') }}">Performance Analysis</a>
+                <a href="{{ url_for('chart') }}">Chart</a>
+                <a href="{{ url_for('history') }}">History</a>
+                <div class="auth-buttons">
+                    {% if session.logged_in %}
+                        <a href="{{ url_for('logout') }}" id="logout" class="btn btn-register">Logout</a>
+                        <span style="color: white; margin-left: 10px;">Hi, {{ session.user }}</span>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" id="R1" class="btn btn-login">Login</a>
+                        <a href="{{ url_for('register') }}" id="R2" class="btn btn-register">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d1">
+        <h1>Performance Analysis</h1>
+    </div>
+
+    <div class="d2">
+        <div class="upload-container">
+            <div class="para">
+                <h2>Accuracy : {{ accuracy }}</h2>
+                <h2>Precision : {{ precision }}</h2>
+                <h2>Recall : {{ recall }}</h2>
+                <h2>F-Measure : {{ f1 }}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

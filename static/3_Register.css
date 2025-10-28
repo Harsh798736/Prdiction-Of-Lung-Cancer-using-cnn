@@ -1,0 +1,97 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Styles */
+* {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background:url('lungss.jpg') no-repeat center/cover;          /* Light Gray Background */
+}
+
+/* Login Card */
+.login-container {
+    background:rgba(0, 0, 0, 0.158);
+    position: relative;
+    right: 250px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+.login-container h2 {
+    margin-bottom: 3rem;
+    font-weight: 600;
+    color:white;
+}
+
+/* Input Fields */
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    padding-left: 45px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background: #f9f9f9;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #28a745;
+}
+
+/* Buttons */
+.btn {
+    width: 150px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.register-btn {
+    background: #007bff;
+    color: white;
+}
+
+.register-btn:hover {
+    background: #0056b3;
+}
+/* Responsive */
+@media (max-width: 400px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+}

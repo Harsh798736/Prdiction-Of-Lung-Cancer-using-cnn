@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview</title>
+
+    <!-- Correct CSS Linking -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='1_Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='4_Preview.css') }}">
+
+    <style>
+        
+    #prediction-result {
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
+        border-radius: 10px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+</style>
+
+
+    </style>
+    </head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">LungCancer</a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                <a style="color: #007bff;" href="{{ url_for('preview') }}">Preview</a>
+                <a href="{{ url_for('performance') }}">Performance Analysis</a>
+                <a href="{{ url_for('chart') }}">Chart</a>
+                <a href="{{ url_for('history') }}">History</a>
+
+                <div class="auth-buttons">
+                    {% if session.logged_in %}
+                        <a href="{{ url_for('logout') }}" id="logout" class="btn btn-register">Logout</a>
+                        <span style="color: white; margin-left: 10px;">Hi, {{ session.user }}</span>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" id="R1" class="btn btn-login">Login</a>
+                        <a href="{{ url_for('register') }}" id="R2" class="btn btn-register">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d1">
+        <h1>Preview</h1>
+    </div>
+    <div class="d2">
+        <div class="upload-container">
+            <p style="margin-bottom: 10px; color: white;">Upload CT Scan Image Here</p>
+            <label for="image-upload" class="upload-label">
+                <i class="fas fa-cloud-upload-alt"></i> Browse Image
+            </label>
+            <input type="file" id="image-upload" accept="image/*">
+            <img id="image-preview" class="preview-image" alt="Preview">
+        </div>
+    </div>
+
+    <div class="d3">
+        <button class="submit-btn" onclick="submitImage()">Submit Image</button>
+    </div>
+
+    <h2 id="prediction-result" style="color: white; text-align: center; margin-top: 20px;"></h2>
+    
+</body>
+<script>
+    document.getElementById('image-upload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('image-preview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    async function submitImage() {
+        const fileInput = document.getElementById('image-upload');
+        if (fileInput.files.length === 0) {
+            alert('Please select an image first!');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        document.getElementById('prediction-result').innerText = 'Predicting...';
+        console.log('Uploading file:', fileInput.files[0].name);
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+            document.getElementById('prediction-result').innerText = 'Prediction Result: ' + data.prediction;
+
+        } catch (error) {
+            alert('Error during prediction');
+            console.error(error);
+        }
+    }
+</script>
+</html>

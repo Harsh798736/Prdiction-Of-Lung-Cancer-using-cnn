@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='1_Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='6_Chart.css') }}">
+    
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home')}}" class="logo">LungCancer</a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+                <a href="{{ url_for('preview') }}">Preview</a>
+                <a href="{{ url_for('performance') }}">Performance Analysis</a>
+                <a style="color: #007bff;" href="{{ url_for('chart') }}">Chart</a>
+                <a href="{{ url_for('history') }}">History</a>
+                <div class="auth-buttons">
+                    {% if session.logged_in %}
+                        <a href="{{ url_for('logout') }}" id="logout" class="btn btn-register">Logout</a>
+                        <span style="color: white; margin-left: 10px;">Hi, {{ session.user }}</span>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" id="R1" class="btn btn-login">Login</a>
+                        <a href="{{ url_for('register') }}" id="R2" class="btn btn-register">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="d1">
+        <h1>Chart</h1>
+    </div>
+    {% if show_graphs %}
+<div class="d2">
+    <div class="upload-container">
+        <div class="para">
+            <h2>Model Loss</h2>
+            <img src="{{ url_for('static', filename='loss.png') }}" alt="Loss Graph"
+                 style="max-width: 90%; border: 2px solid white;">
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="upload-container">
+        <div class="para">
+            <h2>Model Accuracy</h2>
+            <img src="{{ url_for('static', filename='accuracy.png') }}" alt="Accuracy Graph"
+                 style="max-width: 90%; border: 2px solid white;">
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="d2">
+    <p style="color: white; text-align: center; font-size: 20px;">
+        Please upload an image first to view training charts.
+    </p>
+</div>
+{% endif %}
+
+
+     
+</body>
+</html>

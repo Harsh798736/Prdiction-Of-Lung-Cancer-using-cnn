@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='1_Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='7_About.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('home') }}" class="logo">LungCancer</a>
+            <div class="nav-links">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+    
+                {% if session.get('logged_in') %}
+                    <a href="{{ url_for('preview') }}">Preview</a>
+                    <a href="{{ url_for('performance') }}">Performance Analysis</a>
+                    <a href="{{ url_for('chart') }}">Chart</a>
+                    <a href="{{ url_for('history') }}">History</a>
+                    <div class="auth-buttons">
+                        {% if session.logged_in %}
+                            <a href="{{ url_for('logout') }}" id="logout" class="btn btn-register">Logout</a>
+                            <span style="color: white; margin-left: 10px;">Hi, {{ session.user }}</span>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" id="R1" class="btn btn-login">Login</a>
+                            <a href="{{ url_for('register') }}" id="R2" class="btn btn-register">Register</a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+
+    <div class="container">
+        <h1>About Lung Cancer Prediction System</h1>
+        
+        <div class="section">
+            <h2>What is Lung Cancer Prediction?</h2>
+            <p>Lung Cancer Prediction is an advanced medical diagnostic system that utilizes artificial intelligence and machine learning algorithms to analyze medical imaging data and patient information to predict the likelihood of lung cancer. This system helps healthcare professionals make more accurate and timely diagnoses, potentially saving lives through early detection.</p>
+        </div>
+
+        <div class="section">
+            <h2>How It Works</h2>
+            <p>The system works through a sophisticated process:</p>
+            <ol>
+                <li><strong>Data Collection:</strong> The system gathers medical imaging data (CT scans, X-rays) and patient medical history.</li>
+                <li><strong>Image Processing:</strong> Advanced image processing techniques are applied to enhance and prepare the medical images for analysis.</li>
+                <li><strong>Feature Extraction:</strong> The system identifies and extracts relevant features from the medical images and patient data.</li>
+                <li><strong>Machine Learning Analysis:</strong> Using trained AI models, the system analyzes the extracted features to identify patterns and indicators of lung cancer.</li>
+                <li><strong>Risk Assessment:</strong> The system generates a comprehensive risk assessment report with probability scores and detailed analysis.</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Objectives</h2>
+            <ul>
+                <li>Early detection of lung cancer to improve treatment outcomes</li>
+                <li>Reduction of diagnostic errors and false negatives</li>
+                <li>Providing healthcare professionals with AI-assisted decision support</li>
+                <li>Standardizing the diagnostic process across different healthcare facilities</li>
+                <li>Reducing healthcare costs through more efficient diagnosis</li>
+                <li>Improving patient survival rates through timely intervention</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Advantages</h2>
+            <div class="highlight">
+                <ul>
+                    <li><strong>Early Detection:</strong> Identifies potential cases of lung cancer at earlier stages when treatment is most effective</li>
+                    <li><strong>Accuracy:</strong> Provides consistent and objective analysis, reducing human error</li>
+                    <li><strong>Efficiency:</strong> Processes and analyzes medical data much faster than traditional methods</li>
+                    <li><strong>Accessibility:</strong> Makes advanced diagnostic capabilities available to healthcare facilities of all sizes</li>
+                    <li><strong>Cost-Effective:</strong> Reduces unnecessary tests and procedures through more accurate initial assessment</li>
+                    <li><strong>Continuous Learning:</strong> The system improves over time as it processes more cases</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li>Advanced image processing capabilities</li>
+                <li>Comprehensive risk assessment scoring</li>
+                <li>Detailed analysis reports</li>
+                <li>Integration with existing healthcare systems</li>
+                <li>Secure data handling and patient privacy protection</li>
+                <li>Regular system updates and improvements</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Impact on Healthcare</h2>
+            <p>The Lung Cancer Prediction System represents a significant advancement in medical technology. By combining artificial intelligence with medical expertise, it provides healthcare professionals with powerful tools to:</p>
+            <ul>
+                <li>Make more informed diagnostic decisions</li>
+                <li>Reduce the time between initial screening and diagnosis</li>
+                <li>Improve patient outcomes through early intervention</li>
+                <li>Optimize healthcare resources and reduce unnecessary procedures</li>
+                <li>Contribute to medical research through anonymized data analysis</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
