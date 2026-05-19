@@ -40,3 +40,5 @@ virtualenv==20.29.3
 Werkzeug==3.0.0
 zipp==3.17.0
 gunicorn==21.2.0
+torch==2.0.1
+torchvision==0.15.2
