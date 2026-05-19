@@ -186,7 +186,7 @@ def predict():
 
     except Exception as e:
         print("Prediction error:", str(e))
-        return jsonify({'error': 'Prediction failed'}), 500
+        return jsonify({'error': str(e)}), 500
 
 
 @app.route('/performance')
