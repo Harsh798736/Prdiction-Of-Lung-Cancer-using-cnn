@@ -67,7 +67,7 @@ body {
 }
 /* Buttons */
 .btn {
-    width: 100px;
+    width: 150px;
     padding: 12px;
     border: none;
     border-radius: 8px;
@@ -91,6 +91,8 @@ body {
 .create-btn {
     background: #007bff;
     color: white;
+    padding: 13px 42px;
+    text-decoration: none;
 }
 
 .create-btn a {
@@ -128,4 +130,3 @@ body {
 .button2 {
     display: flex;
 }
-

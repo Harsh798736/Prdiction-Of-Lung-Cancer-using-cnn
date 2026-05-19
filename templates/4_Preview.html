@@ -12,17 +12,13 @@
     <style>
         
     #prediction-result {
-        color: white;
-        text-align: center;
-        margin-top: 20px;
-        font-size: 20px;
+        margin-top: -75px;
         padding: 10px 20px;
         background-color: rgba(0, 0, 0, 0.7); /* Dark background with transparency */
-        border-radius: 10px;
-        width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        margin-bottom: 50px;
+        box-shadow: 0 0 10px rgb(134 151 255);
     }
 </style>
 
@@ -32,7 +28,7 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">LungCancer</a>
+            <a href="#" class="logo">NeoLung</a>
             <div class="nav-links">
                 <a href="{{ url_for('home') }}">Home</a>
                 <a href="{{ url_for('about') }}">About</a>
@@ -45,7 +41,7 @@
                 <div class="auth-buttons">
                     {% if session.logged_in %}
                         <a href="{{ url_for('logout') }}" id="logout" class="btn btn-register">Logout</a>
-                        <span style="color: white; margin-left: 10px;">Hi, {{ session.user }}</span>
+                        <span style="color: white; margin-top: 8px; margin-left: 10px;">Hi, {{ session.user }}</span>
                     {% else %}
                         <a href="{{ url_for('login') }}" id="R1" class="btn btn-login">Login</a>
                         <a href="{{ url_for('register') }}" id="R2" class="btn btn-register">Register</a>
@@ -76,7 +72,7 @@
         <button class="submit-btn" onclick="submitImage()">Submit Image</button>
     </div>
 
-    <h2 id="prediction-result" style="color: white; text-align: center; margin-top: 20px;"></h2>
+    <h2 id="prediction-result" style="color: white; text-align: center;"></h2>
     
 </body>
 <script>
@@ -105,6 +101,7 @@
 
         document.getElementById('prediction-result').innerText = 'Predicting...';
         console.log('Uploading file:', fileInput.files[0].name);
+        alert("Scroll Down To Check Result  ⬇  ");
 
         try {
             const response = await fetch('http://127.0.0.1:5000/predict', {
