@@ -113,7 +113,7 @@
             document.getElementById('prediction-result').innerText = 'Prediction Result: ' + data.prediction;
 
         } catch (error) {
-            alert('Error during prediction');
+            alert(error);
             console.error(error);
         }
     }
